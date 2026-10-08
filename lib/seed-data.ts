@@ -1,0 +1,12 @@
+import type { Product } from "@/lib/types";
+
+export const seedProducts: Product[] = [
+  { id: 1, name: "코튼 릴랙스 셔츠", category: "의류", price: 52000, description: "가볍고 부드러운 코튼 100% 소재로 만든 여유로운 핏의 셔츠입니다. 단독으로도, 가벼운 아우터로도 활용하기 좋아요.", image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=85", colors: ["오프화이트", "스카이", "네이비"], sizes: ["S", "M", "L"], stock: 18, featured: true },
+  { id: 2, name: "데일리 레더 토트백", category: "액세서리", price: 89000, description: "매일의 소지품을 여유 있게 담는 미니멀한 토트백. 견고한 텍스처와 넉넉한 수납으로 오래 함께할 수 있어요.", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85", colors: ["블랙", "브라운"], sizes: ["FREE"], stock: 9, featured: true },
+  { id: 3, name: "리넨 테이블 러너", category: "리빙", price: 34000, description: "자연스러운 주름과 질감이 식탁에 차분한 온기를 더해줍니다. 세탁할수록 부드러워지는 유럽산 리넨 소재.", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85", colors: ["내추럴", "올리브"], sizes: ["180cm"], stock: 14, featured: true },
+  { id: 4, name: "세라믹 머그 세트", category: "리빙", price: 28000, description: "손으로 빚은 듯한 둥근 실루엣과 매트한 유약. 아침의 커피를 조금 더 천천히 즐겨보세요.", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=900&q=85", colors: ["크림", "차콜"], sizes: ["2개 세트"], stock: 0, featured: false },
+  { id: 5, name: "소프트 니트 가디건", category: "의류", price: 76000, description: "가볍게 걸치기 좋은 포근한 가디건. 가는 짜임과 드롭 숄더가 자연스러운 실루엣을 완성합니다.", image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=900&q=85", colors: ["버터", "그레이", "차콜"], sizes: ["S", "M", "L"], stock: 11, featured: true },
+  { id: 6, name: "골드 레이어드 목걸이", category: "액세서리", price: 42000, description: "작은 펜던트와 섬세한 체인이 겹쳐지는 디자인. 데일리 룩에 은은한 포인트가 됩니다.", image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85", colors: ["골드", "실버"], sizes: ["42cm"], stock: 22, featured: false },
+  { id: 7, name: "허브 핸드크림 듀오", category: "뷰티", price: 24000, description: "식물성 오일과 허브 향을 담은 산뜻한 핸드크림 두 가지. 손끝에 남는 향까지 가볍고 편안합니다.", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=85", colors: ["시트러스", "우디"], sizes: ["50ml x 2"], stock: 30, featured: false },
+  { id: 8, name: "와이드 코튼 팬츠", category: "의류", price: 68000, description: "탄탄한 코튼 트윌과 편안한 와이드 핏. 허리 안쪽 스트링으로 하루 종일 부담 없이 입을 수 있어요.", image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=85", colors: ["아이보리", "카키"], sizes: ["S", "M", "L"], stock: 6, featured: false },
+];

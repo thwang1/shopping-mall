@@ -1,0 +1,73 @@
+CREATE DATABASE IF NOT EXISTS morrow_market CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE morrow_market;
+
+CREATE TABLE IF NOT EXISTS users (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(40) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  name VARCHAR(80) NOT NULL,
+  email VARCHAR(160) NOT NULL DEFAULT '',
+  phone VARCHAR(30) NOT NULL DEFAULT '',
+  role ENUM('customer', 'admin') NOT NULL DEFAULT 'customer',
+  grade ENUM('welcome', 'silver', 'gold', 'vip') NOT NULL DEFAULT 'welcome',
+  points INT NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS sessions (
+  token CHAR(64) NOT NULL PRIMARY KEY,
+  user_id BIGINT UNSIGNED NOT NULL,
+  expires_at DATETIME NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_sessions_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS products (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(160) NOT NULL,
+  category VARCHAR(60) NOT NULL,
+  price INT UNSIGNED NOT NULL,
+  description TEXT NOT NULL,
+  image VARCHAR(500) NOT NULL,
+  colors JSON NOT NULL,
+  sizes JSON NOT NULL,
+  stock INT UNSIGNED NOT NULL DEFAULT 0,
+  featured TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT UNSIGNED NOT NULL,
+  total INT UNSIGNED NOT NULL,
+  payment_method ENUM('card', 'easy') NOT NULL DEFAULT 'card',
+  status ENUM('preparing', 'shipping', 'delivered') NOT NULL DEFAULT 'preparing',
+  recipient VARCHAR(100) NOT NULL,
+  address VARCHAR(300) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT UNSIGNED NOT NULL,
+  product_id BIGINT UNSIGNED NOT NULL,
+  product_name VARCHAR(160) NOT NULL,
+  image VARCHAR(500) NOT NULL,
+  unit_price INT UNSIGNED NOT NULL,
+  quantity INT UNSIGNED NOT NULL,
+  color VARCHAR(40) NOT NULL DEFAULT '',
+  size VARCHAR(40) NOT NULL DEFAULT '',
+  CONSTRAINT fk_items_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_orders_created_at ON orders(created_at);
+CREATE INDEX idx_orders_status ON orders(status);
+
+CREATE TABLE IF NOT EXISTS visits (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  visitor_key CHAR(40) NOT NULL,
+  visited_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_visits_visited_at (visited_at),
+  INDEX idx_visits_visitor_day (visitor_key, visited_at)
+);

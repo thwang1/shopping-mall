@@ -1,0 +1,44 @@
+node_modules/
+.next*/
+out/
+.env*
+!.env.example
+*.log
+*.tsbuildinfo
+
+# Secrets and local credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.ppk
+*.jks
+*.keystore
+*.secret
+*.secrets
+id_rsa
+id_ed25519
+*credentials*.json
+secrets/
+
+# Docker configuration
+.dockerignore
+Dockerfile*
+docker-compose*
+compose*.yaml
+compose*.yml
+docker-entrypoint*
+
+# Terraform configuration and state
+.terraform/
+.terraform.lock.hcl
+terraform/
+*.tf
+*.tf.json
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+*.tfstate
+*.tfstate.*
+*.tfplan
